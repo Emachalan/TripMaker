@@ -1,0 +1,47 @@
+{
+    "project_info": {
+      "project_number": "857931266569",
+      "project_id": "tripmake-1eb12",
+      "storage_bucket": "tripmake-1eb12.appspot.com"
+    },
+    "client": [
+      {
+        "client_info": {
+          "mobilesdk_app_id": "1:857931266569:android:81d02784532243d0d156d8",
+          "android_client_info": {
+            "package_name": "com.tripmaker"
+          }
+        },
+        "oauth_client": [
+          {
+            "client_id": "857931266569-a5uiomvor0lt9b3bjg86n3ai0vbo0sbc.apps.googleusercontent.com",
+            "client_type": 3
+          }
+        ],
+        "api_key": [
+          {
+            "current_key": "AIzaSyC5bS_8hVCvEH3O52-O-Uf9FbqbvsR3f9A"
+          }
+        ],
+        "services": {
+          "appinvite_service": {
+            "other_platform_oauth_client": [
+              {
+                "client_id": "857931266569-a5uiomvor0lt9b3bjg86n3ai0vbo0sbc.apps.googleusercontent.com",
+                "client_type": 3
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "configuration_version": "1",
+    "web": {
+      "client_id": "481710974691-jc6v3pbv9t0b0ohocgbpv7at664l1bm9.apps.googleusercontent.com",
+      "project_id": "tripmaker-344106",
+      "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+      "token_uri": "https://oauth2.googleapis.com/token",
+      "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+      "client_secret": "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"
+    }
+  }
