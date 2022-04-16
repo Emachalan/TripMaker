@@ -14,14 +14,20 @@ import {usePeopleSetup} from './hooks';
 const {width, height} = Dimensions.get('window');
 const MakeTrip = ({navigation}) => {
   const [searchText, setSearchText] = useState(null);
-  const {searchPeopleSetup, searchedPeoples} = usePeopleSetup();
-  console.log('onSearchPress//', searchedPeoples);
+  const {searchPeopleSetup, searchedPeoples, sendMakeTripNotification} = usePeopleSetup();
   const onSearchPress = () => {
     searchPeopleSetup({params: {name: searchText}, endpoint: 'users/search'});
   };
 
+  const onPersonPress = id => {
+    sendMakeTripNotification({
+      body: {user_id: id},
+      endpoint: 'notifications/send-notifications',
+    });
+  };
+
   const renderItem = ({item}) => (
-    <TouchableOpacity style={styles.item}>
+    <TouchableOpacity style={styles.item} onPress={() => onPersonPress(item.id)}>
       <View style={{marginLeft: 20}}>
         <Image source={{uri: item.photo}} style={{height: 30, width: 30}} />
       </View>

@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import messaging from '@react-native-firebase/messaging';
+import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import React, {useEffect} from 'react';
 import {useProfileSetup} from '../Login/hooks';
 
@@ -36,6 +37,15 @@ const Home = ({navigation}) => {
     }
   };
 
+  const onLogoutPress = async () => {
+    try {
+      await GoogleSignin.signOut();
+      navigation.navigate('Login');
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const requestPermission = async () => {
     try {
       await messaging().requestPermission();
@@ -56,6 +66,13 @@ const Home = ({navigation}) => {
           style={styles.btnContainer}
           onPress={() => navigation.navigate('MakeTrip')}>
           <Text style={{fontSize: 14, color: 'black'}}>Make Trip</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={{position: 'absolute', bottom: 10, left: 0, right: 0}}>
+        <TouchableOpacity
+          style={styles.btnContainer}
+          onPress={() => onLogoutPress()}>
+          <Text style={{fontSize: 14, color: 'black'}}>Logout</Text>
         </TouchableOpacity>
       </View>
     </View>

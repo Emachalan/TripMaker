@@ -1,7 +1,7 @@
 import {createAction, createAsyncThunk} from '@reduxjs/toolkit';
 import {PostService} from '../../services/PostService';
 
-const api_endpoint = 'http://192.168.1.31:3000/';
+const api_endpoint = 'http://192.168.101.6:3000/';
 
 export const createAccount = createAsyncThunk(
   'profile/createAccount',

@@ -1,5 +1,5 @@
 /* eslint-disable react/react-in-jsx-scope */
-import React from 'react';
+import React, {useRef} from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -22,54 +22,67 @@ const HomeScreenNavigator = () => {
         headerStyle: {backgroundColor: 'tomato'},
       }}>
       <Stack.Screen name="Login" component={Login} />
-      <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="Home" options={{headerLeft: null}} component={Home} />
       <Stack.Screen name="MakeTrip" component={MakeTrip} />
     </Stack.Navigator>
   );
 };
 
 const MapScreenNavigator = () => {
-    return (
-      <Stack.Navigator
-        screenOptions={{
-          headerMode: 'screen',
-          headerTintColor: 'white',
-          headerTitleAlign: 'center',
-          headerStyle: {backgroundColor: 'tomato'},
-        }}>
-        <Stack.Screen name="MapView" component={MapView} />
-      </Stack.Navigator>
-    );
-  };
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerMode: 'screen',
+        headerTintColor: 'white',
+        headerTitleAlign: 'center',
+        headerStyle: {backgroundColor: 'tomato'},
+      }}>
+      <Stack.Screen name="MapView" component={MapView} />
+    </Stack.Navigator>
+  );
+};
 
-export const Navigation = () => {
+export const Navigation = ({navigationRef}) => {
+  const showBottomTabs = item => {
+    const arr = ['Login', 'MapView'];
+    console.log('hsshs', item);
+
+    return arr.includes(item);
+  };
   return (
     <Tab.Navigator
-      initialRouteName="Home"
-      screenOptions={{
+      initialRouteName="HomeScreen"
+      screenOptions={({navigation, route}) => ({
         tabBarActiveTintColor: '#e91e63',
         headerShown: false,
-      }}
+        tabBarStyle: {
+          display: showBottomTabs(
+            navigationRef?.current?.getCurrentRoute()?.name,
+          )
+            ? 'none'
+            : 'flex',
+        },
+      })}
       tabBarOptions={{
         labelStyle: {fontSize: 18},
         activeTintColor: 'red',
         inactiveTintColor: 'black',
       }}>
       <Tab.Screen
-        name="Home"
+        name="HomeScreen"
         component={HomeScreenNavigator}
         options={{
-          tabBarLabel: 'Home',
+          tabBarLabel: 'HomeScreen',
           tabBarIcon: ({color, size}) => (
             <MaterialCommunityIcons name="home" color={color} size={size} />
           ),
         }}
       />
       <Tab.Screen
-        name="Settings"
+        name="SettingsScreen"
         component={Settings}
         options={{
-          tabBarLabel: 'Settings',
+          tabBarLabel: 'SettingsScreen',
           tabBarIcon: ({color, size}) => (
             <MaterialCommunityIcons name="bell" color={color} size={size} />
           ),
@@ -77,10 +90,10 @@ export const Navigation = () => {
         }}
       />
       <Tab.Screen
-        name="MapView"
+        name="MapViewScreen"
         component={MapScreenNavigator}
         options={{
-          tabBarLabel: 'MapView',
+          tabBarLabel: 'MapViewScreen',
           tabBarIcon: ({color, size}) => (
             <MaterialCommunityIcons name="account" color={color} size={size} />
           ),

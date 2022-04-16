@@ -1,9 +1,9 @@
 import axios from 'axios';
 // import Hand
 
-export const PostService = async (endpoint, params) => {
+export const PostService = async (endpoint, body) => {
   try {
-    const {status, data} = await axios.post(endpoint, params);
+    const {status, data} = await axios.post(endpoint, body);
     console.log("status...",status)
     if (status <= 200 || status >= 226) {
       return {success: true, data, message: 'Created Successfully'};
